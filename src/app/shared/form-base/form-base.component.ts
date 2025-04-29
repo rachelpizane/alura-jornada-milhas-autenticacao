@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UnidadeFederativa } from 'src/app/core/types/type';
 
@@ -10,6 +10,7 @@ import { UnidadeFederativa } from 'src/app/core/types/type';
 export class FormBaseComponent implements OnInit{
   cadastroForm!: FormGroup;
   estadoControl = new FormControl<UnidadeFederativa | null>(null, Validators.required);
+  @Input() perfilComponent!: boolean;
 
   constructor(
     private formBuilder: FormBuilder
