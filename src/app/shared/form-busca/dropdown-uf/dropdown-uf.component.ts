@@ -14,7 +14,8 @@ export class DropdownUfComponent implements OnInit {
   @Input() label: string = '';
   @Input() iconePrefixo: string = '';
   @Input() control!: FormControl;
-
+  @Input() placeholder: string = '';
+  
   unidadesFederativas: UnidadeFederativa[] = [];
 
   filteredOptions$?: Observable<UnidadeFederativa[]>;
@@ -24,6 +25,7 @@ export class DropdownUfComponent implements OnInit {
     private unidadeFederativaService: UnidadeFederativaService) {
 
   }
+
 
   ngOnInit(): void {
     this.unidadeFederativaService.listar()
