@@ -40,6 +40,7 @@ import { DepoimentosComponent } from './pages/home/depoimentos/depoimentos.compo
 import { LoginComponent } from './pages/login/login.component';
 import { CommonModule } from '@angular/common';
 import { FormBaseComponent } from './shared/form-base/form-base.component';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { FormBaseComponent } from './shared/form-base/form-base.component';
     SeletorPassageiroComponent,
     DepoimentosComponent,
     LoginComponent,
-    FormBaseComponent
+    FormBaseComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
