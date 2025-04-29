@@ -15,14 +15,26 @@
           <mat-form-field appearance="outline">
             <mat-label>E-mail</mat-label>
             <input type="email" placeholder="Digite seu e-mail" matInput formControlName="email">
+            <mat-error *ngIf="formLogin.controls['email']?.errors?.['required'] && formLogin.controls['email'].touched">
+              E-mail é obrigatório
+            </mat-error>
+            <mat-error *ngIf="formLogin.controls['email']?.errors?.['email'] && formLogin.controls['email'].touched">
+              Formato de e-mail inválido
+            </mat-error>
           </mat-form-field>
+
           <mat-form-field appearance="outline">
             <mat-label>Senha</mat-label>
             <input type="password" placeholder="Digite a sua senha" matInput formControlName="senha">
+            <mat-error *ngIf="formLogin.controls['senha']?.errors && formLogin.controls['senha'].touched">
+              Senha é obrigatório
+            </mat-error>
           </mat-form-field>
+
+
         </mat-card-content>
         <mat-card-actions>
-          <button (click)="login()" mat-flat-button color="primary">
+          <button [disabled]="formLogin.invalid" (click)="login()" mat-flat-button color="primary">
             ACESSAR MINHA CONTA
           </button>
         </mat-card-actions>

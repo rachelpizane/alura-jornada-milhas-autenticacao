@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutenticacaoService } from 'src/app/core/services/autenticacao.service';
 
@@ -15,12 +15,18 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.formLogin = this.formBuilder.group({
-      email: [''],
-      senha: ['']
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required]]
     });
   }
 
   login(): void {
+    if (this.formLogin.invalid) {
+      console.error('Formulário inválido');
+      console.log(this.formLogin);
+      return;
+    }
+
     this.autenticacaoService.autenticar(this.formLogin.value).subscribe({
       next: (response) => {
         console.log('Login bem-sucedido:', response);
