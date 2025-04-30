@@ -1,0 +1,5 @@
+:host ::ng-deep .perfil-button {
+  width: 100%;
+}
+
+//:host ::ng-deep nos permite usar o seletor de estilo de um componente pai em um componente filho
