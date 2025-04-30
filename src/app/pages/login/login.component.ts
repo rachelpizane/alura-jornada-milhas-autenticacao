@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.autenticacaoService.autenticar(this.formLogin.value).subscribe({
       next: (response) => {
         console.log('Login bem-sucedido:', response);
-        this.router.navigateByUrl('/home');
+        this.router.navigate(['/']);
       },
       error: (error) => {
         console.error('Erro ao fazer login:', error);

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AutenticacaoService } from 'src/app/core/services/autenticacao.service';
 import { FormularioService } from 'src/app/core/services/formulario.service';
 import { Usuario } from 'src/app/core/types/type';
@@ -11,7 +12,11 @@ import { Usuario } from 'src/app/core/types/type';
 })
 export class CadastroComponent {
 
-  constructor(private formularioService: FormularioService, private autenticacaoService: AutenticacaoService) { }
+  constructor(
+    private formularioService: FormularioService,
+    private autenticacaoService: AutenticacaoService,
+    private router: Router
+  ) { }
 
   cadastrar(): void {
     const formCadastro: FormGroup | null = this.formularioService.getCadastro();
@@ -29,7 +34,8 @@ export class CadastroComponent {
 
     this.autenticacaoService.cadastrar(usuario).subscribe({
       next: (response) => {
-        console.log('Cadastro realizado com sucesso!', response);
+        console.log('Cadastro realizado com sucesso!');
+        this.router.navigate(['/login']);
       },
       error: (error) => {
         console.error('Erro ao realizar o cadastro:', error);

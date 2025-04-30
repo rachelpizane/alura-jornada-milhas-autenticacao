@@ -23,7 +23,7 @@ export interface Login {
     senha: string;
 }
 
-export interface Token {
+export interface AuthResponse {
   access_token: string;
 }
 

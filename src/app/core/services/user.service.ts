@@ -16,12 +16,6 @@ export class UserService {
     }
   }
 
-  decodificarJWT(): void {
-    const token: string = this.tokenService.retornarToken();
-    const user: Usuario = jwt_decode(token) as Usuario;
-    this.userSubject.next(user);
-  }
-
   retornarUser(): Observable<Usuario | null> {
     return this.userSubject.asObservable();
   }
@@ -38,5 +32,12 @@ export class UserService {
 
   estaLogado(): boolean {
     return this.tokenService.possuiToken();
+  }
+
+  decodificarJWT(): void {
+    const token: string = this.tokenService.retornarToken();
+    const user: Usuario = jwt_decode(token) as Usuario;
+    console.log("Decodificado: ", user);
+    this.userSubject.next(user);
   }
 }

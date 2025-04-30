@@ -1,8 +1,9 @@
-import { Observable, shareReplay } from 'rxjs';
+import { Observable, shareReplay, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Token, Usuario } from '../types/type';
+import { AuthResponse, Usuario } from '../types/type';
+import { UserService } from './user.service';
 
 interface Login {
   email: string;
@@ -15,10 +16,18 @@ interface Login {
 export class AutenticacaoService {
   private apiUrl = environment.apiUrl;
 
-  constructor(private http : HttpClient) { }
+  constructor(
+    private http : HttpClient,
+    private userService: UserService
+  ) { }
 
-  autenticar(login: Login): Observable<Token> {
-    return this.http.post<Token>(`${this.apiUrl}/auth/login`, login);
+  autenticar(login: Login): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/login`, login).pipe(
+      tap((response: AuthResponse) => {
+        const token: string = response.access_token;
+        this.userService.salvarToken(token);
+      })
+    );
   }
 
   cadastrar(cadastro: Usuario): Observable<Usuario> {
