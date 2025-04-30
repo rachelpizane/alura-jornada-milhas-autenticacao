@@ -10,7 +10,7 @@ export class TokenService {
     return localStorage.setItem(this.KEY, token);
   }
 
-  exbluirToke(): void {
+  excluirToken(): void {
     return localStorage.removeItem(this.KEY);
   }
 
@@ -18,7 +18,7 @@ export class TokenService {
     return localStorage.getItem(this.KEY) || '';
   }
 
-  verificarSePossuiToken(): boolean {
+  possuiToken(): boolean {
     return !!this.retornarToken();
   }
 }
