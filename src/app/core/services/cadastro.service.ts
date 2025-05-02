@@ -24,6 +24,4 @@ export class CadastroService {
   editarCadastro(cadastro : Usuario): Observable<Usuario> {
     return this.http.patch<Usuario>(`${this.apiUrl}/auth/perfil`, cadastro);
   }
-
-
 }
