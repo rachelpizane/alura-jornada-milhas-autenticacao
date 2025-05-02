@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AutenticacaoService } from 'src/app/core/services/autenticacao.service';
+import { CadastroService } from 'src/app/core/services/cadastro.service';
 import { FormularioService } from 'src/app/core/services/formulario.service';
 import { Usuario } from 'src/app/core/types/type';
 
@@ -14,7 +14,7 @@ export class CadastroComponent {
 
   constructor(
     private formularioService: FormularioService,
-    private autenticacaoService: AutenticacaoService,
+    private cadastroService: CadastroService,
     private router: Router
   ) { }
 
@@ -32,7 +32,7 @@ export class CadastroComponent {
 
     const usuario : Usuario = formCadastro.value;
 
-    this.autenticacaoService.cadastrar(usuario).subscribe({
+    this.cadastroService.cadastrar(usuario).subscribe({
       next: (response) => {
         console.log('Cadastro realizado com sucesso!');
         this.router.navigate(['/login']);

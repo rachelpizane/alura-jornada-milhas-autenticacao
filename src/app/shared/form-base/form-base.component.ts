@@ -18,6 +18,7 @@ export class FormBaseComponent implements OnInit{
   @Input() textoBotao: string = 'CADASTRAR';
 
   @Output() acaoExecutada: EventEmitter<any> = new EventEmitter<any>();
+  @Output() deslogar: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,10 +41,20 @@ export class FormBaseComponent implements OnInit{
       aceitarTermos: [null, [Validators.requiredTrue]]
     });
 
+    if(this.perfilComponent){
+      this.cadastroForm.get('aceitarTermos')?.setValidators(null)
+    } else {
+      this.cadastroForm.get('aceitarTermos')?.setValidators([Validators.requiredTrue])
+    }
+
     this.formularioService.setCadastro(this.cadastroForm);
   }
 
   executarAcao(): void {
-    this.acaoExecutada.emit(this.cadastroForm.value);
+    this.acaoExecutada.emit();
+  }
+
+  emitirDeslogar(): void{
+    this.deslogar.emit();
   }
 }

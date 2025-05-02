@@ -1,8 +1,8 @@
-import { Observable, shareReplay, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { AuthResponse, Usuario } from '../types/type';
+import { AuthResponse} from '../types/type';
 import { UserService } from './user.service';
 
 interface Login {
@@ -30,7 +30,5 @@ export class AutenticacaoService {
     );
   }
 
-  cadastrar(cadastro: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`${this.apiUrl}/auth/cadastro`, cadastro);
-  }
+
 }

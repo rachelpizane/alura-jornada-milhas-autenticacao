@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { TokenService } from './token.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import jwt_decode from 'jwt-decode';
+import { CadastroService } from './cadastro.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ import jwt_decode from 'jwt-decode';
 export class UserService {
   private userSubject = new BehaviorSubject<Usuario | null>(null);
 
-  constructor(private tokenService : TokenService) {
+  constructor(
+    private tokenService : TokenService
+  ) {
     if(this.tokenService.possuiToken()) {
       this.decodificarJWT()
     }
@@ -25,7 +28,7 @@ export class UserService {
     this.decodificarJWT();
   }
 
-  lougout(): void {
+  logout(): void {
     this.tokenService.excluirToken();
     this.userSubject.next(null);
   }
